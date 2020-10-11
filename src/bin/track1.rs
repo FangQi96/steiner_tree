@@ -3,14 +3,18 @@
 extern crate steiner;
 use steiner::*;
 
-use std::io::BufRead;
+//use std::io::BufRead;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 // Each edge must have positive weight (weight zero is not allowed).
 fn read_input() -> (G, Vec<usize>) {
 	let mut es: Vec<(usize, usize, W)> = vec![];
 	let mut ts: Vec<usize> = vec![];
-	let stdin = std::io::stdin();
-	for line in stdin.lock().lines() {
+    let file = File::open("/Users/longinus/Documents/streetest/track1000.txt");
+    let reader = BufReader::new(File::open("/Users/longinus/Documents/streetest/track1000.txt").expect("Cannot open"));
+	//let stdin = std::io::stdin();
+	for line in reader.lines() {
 		let line = line.unwrap();
 		let ss: Vec<&str> = line.split_whitespace().collect();
 		if ss.len() > 0 {
